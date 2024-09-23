@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: book-catalog
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: book-catalog
+  template:
+    metadata:
+      labels:
+        app: book-catalog
+    spec:
+      containers: 
+      - name: book-catalog
+        image: $CONTAINER_REGISTRY/book-catalog:1
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: PORT
+          value: "8001"
+        - name: DATABASE_URL
+          value: "$DB_URL"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inventory-management
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: inventory-management
+  template:
+    metadata:
+      labels:
+        app: inventory-management
+    spec:
+      containers: 
+      - name: inventory-management
+        image: $CONTAINER_REGISTRY/inventory-management:1
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: PORT
+          value: "8002"
+        - name: DATABASE_URL
+          value: "$DB_URL"

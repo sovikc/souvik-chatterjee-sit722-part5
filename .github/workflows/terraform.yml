@@ -1,0 +1,54 @@
+# 
+# GitHub Actions workflow.
+#
+
+name: Terraform Steps
+
+on:
+  #
+  # Allows deployment to be invoked manually through the GitHub Actions user interface.
+  #
+  workflow_dispatch: 
+
+jobs:
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      
+      # Checks-out your repository under $GITHUB_WORKSPACE.
+      - uses: actions/checkout@v3
+
+      #
+      # Azure login.
+      #
+      - name: Azure login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZ_CREDS }}
+      #
+      # Perform Terraform setup.
+      #
+      - name: Perform Terraform setup
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform:_version 1.5.6
+      #
+      # Perform Terraform init.
+      #
+      - name: Perform Terraform init
+        run: terraform init
+        working-directory: ./scripts/terraform
+      #
+      # Perform Terraform plan.
+      #
+      - name: Perform Terraform plan
+        run: terraform plan
+        working-directory: ./scripts/terraform
+      #
+      # Perform Terraform apply.
+      #
+      - name: Perform Terraform apply
+        run: terraform apply -auto-approve
+        working-directory: ./scripts/terraform
