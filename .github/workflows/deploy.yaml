@@ -44,7 +44,7 @@ jobs:
       # Publishes the Docker image to the container registry.
       #
       - name: Publish
-        run: ./scripts/push-image.sh
+        run: chmod +x ./scripts/push-image.sh
 
       #
       # Installs Kubectl and connects it to the cluster.
