@@ -4,3 +4,4 @@ set -u # or set -o nounset
 : "$VERSION"
 
 envsubst < ./scripts/kubernetes/deployment.yaml | kubectl apply -f -
+envsubst < ./scripts/kubernetes/service.yaml | kubectl apply -f -
