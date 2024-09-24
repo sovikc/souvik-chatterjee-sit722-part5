@@ -3,10 +3,10 @@ FROM python:3.11.9-slim-bookworm
 
 WORKDIR /app
 
-COPY requirements.txt .
+COPY ./inventory_management/requirements.txt .
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r ./requirements.txt
 
-COPY . .
+COPY ./inventory_management .
 
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8002"]
