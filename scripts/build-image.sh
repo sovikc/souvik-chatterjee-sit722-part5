@@ -1,7 +1,4 @@
 #
-echo "before building"
-echo "$CONTAINER_REGISTRY"
-echo "$VERSION"
 set -u # or set -o nounset
 : "$CONTAINER_REGISTRY"
 : "$VERSION"
