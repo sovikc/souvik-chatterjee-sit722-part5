@@ -8,5 +8,5 @@ echo "started building"
 docker build -t $CONTAINER_REGISTRY/book-catalog:$VERSION --file ./book_catalog/Dockerfile .
 
 # build inventory-management
-docker build -t $CONTAINER_REGISTRY/inventory-management:$VERSION --file ./inventory-management/Dockerfile .
+docker build -t $CONTAINER_REGISTRY/inventory-management:$VERSION --file ./inventory_management/Dockerfile .
 echo "after building"
