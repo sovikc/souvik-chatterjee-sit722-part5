@@ -1,4 +1,4 @@
-# Your Solution
+#
 echo "before building"
 echo "$CONTAINER_REGISTRY"
 echo "$VERSION"
