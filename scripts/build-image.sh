@@ -1,9 +1,11 @@
 # Your Solution
+echo "before building"
+echo "$CONTAINER_REGISTRY"
+echo "$VERSION"
 set -u # or set -o nounset
 : "$CONTAINER_REGISTRY"
 : "$VERSION"
 
-echo "started building"
 # build book-catalog
 docker build -t $CONTAINER_REGISTRY/book-catalog:$VERSION --file ./book_catalog/Dockerfile .
 
