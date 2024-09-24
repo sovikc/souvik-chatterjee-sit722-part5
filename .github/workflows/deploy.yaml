@@ -37,14 +37,18 @@ jobs:
       #
       # Builds the Docker image.
       #
-      - name: Build
+      - name: Grant Build Execute
         run: chmod +x ./scripts/build-image.sh
+      - name: Build
+        run: ./scripts/build-image.sh
 
       #
       # Publishes the Docker image to the container registry.
       #
-      - name: Publish
+      - name: Grant Push Execute
         run: chmod +x ./scripts/push-image.sh
+      - name: Publish
+        run: ./scripts/push-image.sh
 
       #
       # Installs Kubectl and connects it to the cluster.
@@ -59,5 +63,7 @@ jobs:
       #
       # Expands the configuration template and deploys the microservice.
       #
-      - name: Deploy
+      - name: Grant Deploy Execute
         run: chmod +x ./scripts/deploy.sh
+      - name: Deploy
+        run: ./scripts/deploy.sh
